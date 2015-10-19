@@ -20,10 +20,10 @@ public interface BlitzerRepository extends GraphRepository<Blitzer> {
     Collection<Blitzer> findFollowees(@Param("login") String login);
     @Query("OPTIONAL MATCH (me:Blitzer {login:{blitzer}})-[:PUBLISHED {deleted:false}]->(blitz:Blitz)," +
             "               (blitz)<-[reblitz:REBLITZES]-(:Blitzer)," +
-            "               (me)<-[mention:MENTIONS]-(:Blitz)<-[:PUBLISHED {deleted:false}]-(:Blitzer) " +
+            "               (me)<-[interaction:MENTIONS]-(:Blitz)<-[:PUBLISHED {deleted:false}]-(:Blitzer) " +
             "RETURN me.login AS login, " +
-            "       COUNT(mention) AS number_of_mentions, " +
-            "       COUNT(reblitz) AS number_of_reblitzes, " +
-            "       COUNT(blitz) AS number_of_blitzes")
+            "       COUNT(interaction) AS interactionCount, " +
+            "       COUNT(reblitz) AS reblitzCount, " +
+            "       COUNT(blitz) AS blitzCount")
     BlitzerPopularity findPopularityByLogin(@Param("login") String login);
 }

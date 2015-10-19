@@ -2,6 +2,7 @@ package io.github.fbiville.blitzers.repository;
 
 import io.github.fbiville.TestBlitzBlogging;
 import io.github.fbiville.blitzers.domain.Blitzer;
+import io.github.fbiville.blitzers.domain.BlitzerPopularity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,5 +61,12 @@ public class BlitzerRepositoryTest {
         assertThat(followees)
                 .extracting(Blitzer::getLogin)
                 .containsExactly("§ed_snowden", "§a_powers");
+    }
+
+    @Test
+    public void computes_popularity() {
+        BlitzerPopularity popularity = blitzerRepository.findPopularityByLogin("§james_bond");
+
+        assertThat(popularity.getScore()).isEqualTo(0);
     }
 }
