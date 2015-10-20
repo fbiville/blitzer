@@ -1,4 +1,4 @@
-package io.github.fbiville;
+package io.github.fbiville.configuration;
 
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class)
 })
 @EnableTransactionManagement
-public class BlitzBlogging extends Neo4jConfiguration {
+public class BlitzerDataModule extends Neo4jConfiguration {
 
     @Bean
     public Neo4jServer neo4jServer() {
